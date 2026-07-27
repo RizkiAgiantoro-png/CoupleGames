@@ -1,1 +1,1 @@
-window.IKKIDINE_BACKEND_URL = "";
+couplegames-production.up.railway.app
