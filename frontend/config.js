@@ -1,1 +1,1 @@
-window.IKKIDINE_BACKEND_URL = "http://localhost:3001";
+window.IKKIDINE_BACKEND_URL = "https://couplegames-production.up.railway.app";
