@@ -1,0 +1,1 @@
+window.IKKIDINE_BACKEND_URL = "";

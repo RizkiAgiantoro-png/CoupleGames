@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: ikkidines-game-backend
+    runtime: node
+    plan: free
+    rootDir: backend
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: NODE_VERSION
+        value: 24.14.0
+      - key: CLIENT_ORIGIN
+        sync: false
