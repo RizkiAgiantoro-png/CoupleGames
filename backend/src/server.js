@@ -30,6 +30,6 @@ app.get("/health", (_request, response) => {
 
 registerSocketEvents(io);
 
-httpServer.listen(env.port, () => {
+httpServer.listen(env.port, "0.0.0.0", () => {
   console.log(`Ikkidine's Game is running at http://localhost:${env.port}`);
 });
