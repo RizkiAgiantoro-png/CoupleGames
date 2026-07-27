@@ -94,6 +94,28 @@ export const resetToMenu = () => {
   return getAllGamesSnapshot();
 };
 
+export const restartCurrentGame = () => {
+  if (!state.activeGame) return getAllGamesSnapshot();
+
+  const gameId = state.activeGame;
+
+  if (gameId === "knowEachOther") {
+    state.knowEachOther = createKnowEachOtherState();
+    state.knowEachOther.active = true;
+    state.knowEachOther.phase = "answer";
+  } else if (gameId === "thisOrThat") {
+    state.thisOrThat = createThisOrThatState();
+    state.thisOrThat.active = true;
+    state.thisOrThat.phase = "choice";
+  } else if (gameId === "guessMyAnswer") {
+    state.guessMyAnswer = createGuessMyAnswerState();
+    state.guessMyAnswer.active = true;
+    state.guessMyAnswer.phase = "answer";
+  }
+
+  return getAllGamesSnapshot();
+};
+
 export const getAllGamesSnapshot = () => ({
   activeGame: state.activeGame,
   knowEachOther: getKnowEachOtherSnapshot(),

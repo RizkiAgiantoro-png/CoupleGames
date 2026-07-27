@@ -295,3 +295,137 @@ h1 {
   color: var(--pink-strong);
   animation: pulse-heart 1.2s ease-in-out infinite;
 }
+
+/* ── Game Action Bar ── */
+.game-actions {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  z-index: 100;
+  display: flex;
+  gap: 8px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 200ms ease;
+}
+
+.game-actions.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.game-action-btn {
+  min-height: 36px;
+  padding: 0 16px;
+  color: var(--ink);
+  font-size: 0.82rem;
+  font-weight: 700;
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 4px 16px rgba(136, 69, 150, 0.12);
+  transition: transform 160ms ease, box-shadow 160ms ease, border-color 160ms ease;
+}
+
+.game-action-btn:hover,
+.game-action-btn:focus-visible {
+  transform: translateY(-1px);
+  border-color: rgba(255, 111, 174, 0.5);
+  box-shadow: 0 8px 24px rgba(141, 92, 255, 0.18);
+  outline: none;
+}
+
+.game-action-btn--home {
+  color: var(--white);
+  background: linear-gradient(135deg, var(--pink-strong), var(--purple));
+  border-color: transparent;
+  box-shadow: 0 6px 20px rgba(240, 68, 147, 0.24);
+}
+
+.game-action-btn--home:hover,
+.game-action-btn--home:focus-visible {
+  border-color: transparent;
+  box-shadow: 0 10px 28px rgba(240, 68, 147, 0.34);
+}
+
+/* ── Modal Overlay ── */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background: rgba(51, 19, 56, 0.38);
+  backdrop-filter: blur(6px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 200ms ease;
+}
+
+.modal-overlay.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal-card {
+  width: min(400px, 100%);
+  padding: 28px 24px 20px;
+  border: 1px solid rgba(255, 255, 255, 0.78);
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.94);
+  box-shadow: 0 24px 60px rgba(51, 19, 56, 0.28);
+  text-align: center;
+}
+
+.modal-title {
+  font-size: 1.3rem;
+  font-weight: 800;
+  line-height: 1.35;
+}
+
+.modal-message {
+  margin-top: 10px;
+  color: var(--muted);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 22px;
+}
+
+.modal-cancel,
+.modal-confirm {
+  min-height: 44px;
+  padding: 0 22px;
+  font-weight: 800;
+  border-radius: 999px;
+  transition: transform 160ms ease, box-shadow 160ms ease;
+}
+
+.modal-cancel {
+  color: var(--ink);
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+}
+
+.modal-cancel:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(136, 69, 150, 0.1);
+}
+
+.modal-confirm {
+  color: var(--white);
+  background: linear-gradient(135deg, var(--pink-strong), var(--purple));
+  box-shadow: 0 8px 22px rgba(141, 92, 255, 0.22);
+}
+
+.modal-confirm:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 12px 28px rgba(141, 92, 255, 0.3);
+}

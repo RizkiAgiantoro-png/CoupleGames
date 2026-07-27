@@ -30,6 +30,26 @@
       <span></span>
     </div>
 
+    <div class="game-actions" aria-label="Game controls">
+      <button class="game-action-btn" type="button" data-action="restart" title="Restart game">
+        Restart
+      </button>
+      <button class="game-action-btn game-action-btn--home" type="button" data-action="home" title="Back to home">
+        Home
+      </button>
+    </div>
+
+    <div class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <div class="modal-card">
+        <p class="modal-title" id="modal-title"></p>
+        <p class="modal-message"></p>
+        <div class="modal-actions">
+          <button class="modal-cancel" type="button">Cancel</button>
+          <button class="modal-confirm" type="button">Confirm</button>
+        </div>
+      </div>
+    </div>
+
     <main class="app-shell">
       <section class="hero-panel" aria-labelledby="home-title">
         <div class="brand-row">

@@ -10,6 +10,7 @@ import {
   getThisOrThatSnapshot,
   removePlayerBySocket,
   resetToMenu,
+  restartCurrentGame,
   startGuessMyAnswer,
   startKnowEachOther,
   startThisOrThat,
@@ -117,6 +118,10 @@ export const registerSocketEvents = (io) => {
 
     socket.on("menu:back", () => {
       io.emit("game:update", resetToMenu());
+    });
+
+    socket.on("game:restart", () => {
+      io.emit("game:update", restartCurrentGame());
     });
 
     socket.on("state:request", () => {

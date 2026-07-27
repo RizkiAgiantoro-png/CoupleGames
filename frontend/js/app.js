@@ -4,6 +4,14 @@ const elements = {
   statusLabel: document.querySelector(".status-label"),
   statusText: document.querySelector(".status-text"),
   menu: document.querySelector(".game-menu"),
+  gameActions: document.querySelector(".game-actions"),
+  actionRestart: document.querySelector('[data-action="restart"]'),
+  actionHome: document.querySelector('[data-action="home"]'),
+  modalOverlay: document.querySelector(".modal-overlay"),
+  modalTitle: document.querySelector("#modal-title"),
+  modalMessage: document.querySelector(".modal-message"),
+  modalCancel: document.querySelector(".modal-cancel"),
+  modalConfirm: document.querySelector(".modal-confirm"),
 };
 
 const appState = {
@@ -63,10 +71,12 @@ function render() {
   if (!appState.player) return;
 
   if (appState.activeGame) {
+    showGameActions();
     renderActiveGame();
     return;
   }
 
+  hideGameActions();
   renderMenu();
   setStatus(
     `${appState.player} connected`,
@@ -477,3 +487,50 @@ function escapeHtml(value) {
   div.textContent = String(value);
   return div.innerHTML;
 }
+
+/* ── Game Action Bar ── */
+function showGameActions() {
+  elements.gameActions?.classList.add("is-visible");
+}
+
+function hideGameActions() {
+  elements.gameActions?.classList.remove("is-visible");
+}
+
+/* ── Confirmation Modal ── */
+function showModal(title, message, onConfirm) {
+  if (elements.modalTitle) elements.modalTitle.textContent = title;
+  if (elements.modalMessage) elements.modalMessage.textContent = message;
+  elements.modalOverlay?.classList.add("is-visible");
+
+  const confirmHandler = () => {
+    hideModal();
+    onConfirm();
+  };
+
+  elements.modalConfirm?.addEventListener("click", confirmHandler, { once: true });
+  elements.modalCancel?.addEventListener("click", hideModal, { once: true });
+}
+
+function hideModal() {
+  elements.modalOverlay?.classList.remove("is-visible");
+}
+
+/* ── Wire Action Buttons ── */
+elements.actionRestart?.addEventListener("click", () => {
+  showModal(
+    "Restart this game for both players?",
+    "This will reset all progress and start the current game from the beginning.",
+    () => socket?.emit("game:restart")
+  );
+});
+
+elements.actionHome?.addEventListener("click", () => {
+  showModal(
+    "Return to the home menu?",
+    "This will end the current game for both players.",
+    () => socket?.emit("menu:back")
+  );
+});
+
+/* ── Server broadcasts restart/home via "game:update", no extra listener needed ── */
