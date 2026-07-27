@@ -1,1 +1,1 @@
-couplegames-production.up.railway.app
+window.IKKIDINE_BACKEND_URL = "http://localhost:3001";
